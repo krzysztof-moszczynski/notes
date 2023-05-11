@@ -3,8 +3,8 @@
 This is a simple notes application use to write down todo lists.
 The motivation of the project is to use JAVA, GitHub, Test Driven Development, databese and Model-View-Controller pattern to provide maintainable code accoring to recent standards.
 2. Getting started
-2.1 Prerequisites
-2. 2Installation
+    2.1 Prerequisites
+    2.2 Installation
 3. Usage
 4. Roadmap
 5. Contributing
