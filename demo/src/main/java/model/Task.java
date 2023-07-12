@@ -14,7 +14,9 @@ public class Task {
     private String desc;
 
     public Task(String name, String desc) {
-        this.name = name;
+        //DRY method + validation 
+        setName(name);
+        //this.name = name;
         this.desc = desc;
     }
     
