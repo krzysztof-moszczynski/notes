@@ -9,11 +9,11 @@ package model;
  *
  * @author krzysztof
  */
-public class task {
+public class Task {
     private String name;
     private String desc;
 
-    public task(String name, String desc) {
+    public Task(String name, String desc) {
         this.name = name;
         this.desc = desc;
     }
@@ -23,6 +23,9 @@ public class task {
     }
     
     public void setName(String name) {
+        if (name.isBlank() || name.equals(null)) {
+            throw new IllegalArgumentException("The name cannot be null/blank!");
+        }
         this.name = name;
     }
     
