@@ -23,6 +23,7 @@ public class Task {
     }
     
     public void setName(String name) {
+        //exeption handling
         if (name.isBlank() || name.equals(null)) {
             throw new IllegalArgumentException("The name cannot be null/blank!");
         }
