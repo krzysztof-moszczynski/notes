@@ -15,4 +15,11 @@ public class Task {
     public void setTask(String task) {
         this.task = task;
     }
+
+    @Override
+    public String toString() {
+        return "{" +
+            " task='" + getTask() + "'" +
+            "}";
+    }
 } 
