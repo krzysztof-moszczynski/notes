@@ -1,25 +1,17 @@
 package com.todo.notes.entity;
 
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Getter
+@Setter
+
 public class Task {
 
     private String task;
 
-    public Task(String task) {
-        this.task = task;
-    }
-
-    public String getTask() {
-        return task;
-    }
-
-    public void setTask(String task) {
-        this.task = task;
-    }
-
-    @Override
-    public String toString() {
-        return "{" +
-            " task='" + getTask() + "'" +
-            "}";
-    }
-} 
+}
