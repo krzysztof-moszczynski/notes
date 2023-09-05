@@ -32,16 +32,22 @@ public class NoteServiceImpl implements NoteService {
           noteRepository.deleteById(id);
      }
 
-     public Task addTaskToNote(Long taskId, Long noteId) {
+     public Note addTaskToNote(Long taskId, Long noteId) throws Exception {
           Note note = getNote(noteId);
-          Optional<Task> task = taskRepository.findById(noteId);
-          //properly manage add and save for opitonal object
-          note.getTasks().add(task);
-          return noteRepository.save(task);
+          Optional<Task> task = taskRepository.findById(taskId);
+          Task unwrappedTask = TaskServiceImpl.unwrapTask(task, taskId);
+          note.getTasks().add(unwrappedTask);
+          return noteRepository.save(note);
      }
 
      public List<Note> getNotes() {
           return (List<Note>) noteRepository.findAll();
+     }
+
+     //Optional object management
+     static Task unwrapTask(Optional<Task> entity, Long id) throws Exception {
+          if(entity.isPresent()) return entity.get();
+          else throw new Exception();
      }
 
 }

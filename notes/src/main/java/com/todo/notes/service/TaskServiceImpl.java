@@ -34,4 +34,9 @@ public class TaskServiceImpl implements TaskService{
     public List<Task> getTasks(){
         return (List<Task>) taskRepository.findAll();
     }
+
+    static Task unwrapTask(Optional<Task> entity, Long Id) throws Exception {
+        if(entity.isPresent()) return entity.get();
+        else throw new Exception();
+    }
 }

@@ -9,6 +9,6 @@ public interface NoteService {
     Note getNote(Long id);   
     Note saveNote(Note note);
     void deleteNote(Long id);
-    Task addTaskToNote(Long taskId, Long noteId);
+    Note addTaskToNote(Long taskId, Long noteId) throws Exception;
     List<Note> getNotes();
 }
