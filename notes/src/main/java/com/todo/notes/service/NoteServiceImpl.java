@@ -3,6 +3,7 @@ package com.todo.notes.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.todo.notes.entity.Note;
@@ -16,7 +17,10 @@ import lombok.AllArgsConstructor;
 @AllArgsConstructor
 public class NoteServiceImpl implements NoteService {
 
+     @Autowired
      TaskRepository taskRepository;
+
+     @Autowired
      NoteRepository noteRepository;
 
      public Note getNote(Long Id) {

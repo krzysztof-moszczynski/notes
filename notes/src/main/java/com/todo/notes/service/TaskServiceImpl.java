@@ -3,6 +3,7 @@ package com.todo.notes.service;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.todo.notes.entity.Task;
@@ -14,6 +15,7 @@ import lombok.AllArgsConstructor;
 @Service
 public class TaskServiceImpl implements TaskService{
 
+    @Autowired
     TaskRepository taskRepository;
 
     @Override
