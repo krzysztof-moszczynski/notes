@@ -48,10 +48,6 @@ public class TaskServiceImplTest {
 
     @Test
     public void saveTaskToRepo() {
-        List<Task> tasks = Arrays.asList(
-            new Task(Long.valueOf(1), "go to the gym", note1),
-            new Task(Long.valueOf(2), "go to uni", note1) 
-        );
 
         Task taskToSave = new Task(Long.valueOf(3), "go to hell", note1);
         taskServiceImpl.saveTask(taskToSave);
