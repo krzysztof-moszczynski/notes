@@ -30,7 +30,7 @@ public class Task {
     @Column(name = "activity")
     private String activity;
     
-    @ManyToOne
+    @ManyToOne(optional = false)
     @JoinColumn(name = "note_id", referencedColumnName = "id")
     private Note note;
 
