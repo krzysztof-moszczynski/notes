@@ -36,8 +36,14 @@ public class TaskController {
     }
     
     @PostMapping("")
-    public ResponseEntity<Task> createTask(@Valid @RequestBody Task task) {
+    public ResponseEntity<Task> saveTask(@Valid @RequestBody Task task) {
         return new ResponseEntity<>(taskService.saveTask(task), HttpStatus.CREATED);
+    }
+
+    @PostMapping("/{taskId}/note/{noteId}")
+    public ResponseEntity<Task> addTaskToNote(@PathVariable Long taskId, @PathVariable Long noteId) throws Exception {
+        taskService.addTaskToNote(taskId, noteId);
+        return new ResponseEntity<>(HttpStatus.CREATED);
     }
 
     @DeleteMapping("/{id}")
