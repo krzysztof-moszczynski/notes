@@ -36,7 +36,6 @@ public class NoteServiceImpl implements NoteService {
           noteRepository.deleteById(id);
      }
 
-     /*
      public Note addTaskToNote(Long taskId, Long noteId) throws Exception {
           Note note = getNote(noteId);
           Optional<Task> task = taskRepository.findById(taskId);
@@ -44,7 +43,6 @@ public class NoteServiceImpl implements NoteService {
           note.getTasks().add(unwrappedTask);
           return noteRepository.save(note);
      }
-     */
 
      public List<Note> getNotes() {
           return (List<Note>) noteRepository.findAll();
