@@ -6,39 +6,55 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.todo.notes.entity.Note;
 import com.todo.notes.entity.Task;
+import com.todo.notes.repository.NoteRepository;
 import com.todo.notes.repository.TaskRepository;
 
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @Service
-public class TaskServiceImpl implements TaskService{
+public class TaskServiceImpl implements TaskService {
 
     @Autowired
     TaskRepository taskRepository;
 
+    @Autowired
+    NoteRepository noteRepository;
+
     @Override
     public Task getTask(Long id) {
-        //Optional use to manage case when id can or can't be found in repo 
+        // Optional use to manage case when id can or can't be found in repo
         Optional<Task> task = taskRepository.findById(id);
         return task.get();
     }
 
     public Task saveTask(Task task) {
         return taskRepository.save(task);
-    } 
-    
+    }
+
     public void deleteTask(Long id) {
         taskRepository.deleteById(id);
     }
-    
-    public List<Task> getTasks(){
+
+    public Task addTaskToNote(Long taskId, Long noteId) throws Exception {
+        Task task = getTask(taskId);
+        Optional<Note> note = noteRepository.findById(noteId);
+        Note unwrappedNote = NoteServiceImpl.unwrapNote(note, noteId);
+        task.getNotes().add(unwrappedNote);
+        return taskRepository.save(task);
+    }
+
+    public List<Task> getTasks() {
         return (List<Task>) taskRepository.findAll();
     }
 
     static Task unwrapTask(Optional<Task> entity, Long Id) throws Exception {
-        if(entity.isPresent()) return entity.get();
-        else throw new Exception();
+        if (entity.isPresent())
+            return entity.get();
+        else
+            throw new Exception();
     }
+
 }

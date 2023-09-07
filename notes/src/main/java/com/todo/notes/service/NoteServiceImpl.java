@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.todo.notes.entity.Note;
-import com.todo.notes.entity.Task;
 import com.todo.notes.repository.NoteRepository;
 import com.todo.notes.repository.TaskRepository;
 
@@ -36,22 +35,22 @@ public class NoteServiceImpl implements NoteService {
           noteRepository.deleteById(id);
      }
 
-     public Note addTaskToNote(Long taskId, Long noteId) throws Exception {
-          Note note = getNote(noteId);
-          Optional<Task> task = taskRepository.findById(taskId);
-          Task unwrappedTask = TaskServiceImpl.unwrapTask(task, taskId);
-          note.getTasks().add(unwrappedTask);
-          return noteRepository.save(note);
-     }
-
      public List<Note> getNotes() {
           return (List<Note>) noteRepository.findAll();
      }
 
      //Optional object management
+     /* 
      static Task unwrapTask(Optional<Task> entity, Long id) throws Exception {
           if(entity.isPresent()) return entity.get();
           else throw new Exception();
      }
+     */
 
+    static Note unwrapNote(Optional<Note> entity, Long Id) throws Exception {
+        if (entity.isPresent())
+            return entity.get();
+        else
+            throw new Exception();
+    }
 }

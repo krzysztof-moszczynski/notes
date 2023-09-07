@@ -8,5 +8,6 @@ public interface TaskService {
    Task getTask(Long id); 
    Task saveTask(Task task);
    void deleteTask(Long id);
+   Task addTaskToNote(Long taskId, Long noteId) throws Exception;
    List<Task> getTasks();
 }
