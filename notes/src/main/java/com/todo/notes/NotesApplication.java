@@ -20,7 +20,6 @@ public class NotesApplication implements CommandLineRunner{
 	NoteRepository noteRepository;
 
 	public static void main(String[] args) {
-		//SpringApplication.run(NotesApplication.class, args);
 		SpringApplication.run(NotesApplication.class, args);
 	}
 
