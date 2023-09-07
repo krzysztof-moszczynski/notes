@@ -25,8 +25,10 @@ public class NotesApplication implements CommandLineRunner{
 
 	@Override
 	public void run(String ...args) throws Exception{
-        Note note = new Note("note1");
-		noteRepository.save(note);
+        Note note1 = new Note("note1");
+        Note note2 = new Note("note2");
+		noteRepository.save(note1);
+		noteRepository.save(note2);
 
 		Task[] tasks = new Task[] {
             new Task("go to gym"),
