@@ -15,18 +15,15 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.MockitoJUnitRunner;
 
-import com.todo.notes.entity.Note;
 import com.todo.notes.entity.Task;
 import com.todo.notes.repository.TaskRepository;
 import com.todo.notes.service.TaskServiceImpl;
 
 @RunWith(MockitoJUnitRunner.class)
 public class TaskServiceImplTest {
-/* 
 
     @Mock
     private TaskRepository taskRepository;
-    private Note note1;
 
     @InjectMocks
     private TaskServiceImpl taskServiceImpl;
@@ -36,8 +33,9 @@ public class TaskServiceImplTest {
     @Test
     public void getTaskFromRepo() {
         List<Task> tasks = Arrays.asList(
-            new Task(Long.valueOf(1), "go to the gym", note1),
-            new Task(Long.valueOf(2), "go to uni", note1) 
+            new Task("go to gym"),
+            new Task("go to uni"),
+            new Task("go to hell")
         );
     
         Optional<Task> expectedTask = Optional.of(tasks.get(0));
@@ -48,8 +46,7 @@ public class TaskServiceImplTest {
 
     @Test
     public void saveTaskToRepo() {
-
-        Task taskToSave = new Task(Long.valueOf(3), "go to hell", note1);
+        Task taskToSave = new Task("go to hell");
         taskServiceImpl.saveTask(taskToSave);
         verify(taskRepository, times(1)).save(taskToSave);
     }
@@ -57,8 +54,9 @@ public class TaskServiceImplTest {
     @Test
     public void deleteTaskFromRepo() {
         List<Task> tasks = Arrays.asList(
-            new Task(Long.valueOf(1), "go to the gym", note1),
-            new Task(Long.valueOf(2), "go to uni", note1) 
+            new Task("go to gym"),
+            new Task("go to uni"),
+            new Task("go to hell")
         );
 
         Task taskToDelete = tasks.get(0);
@@ -70,13 +68,13 @@ public class TaskServiceImplTest {
     @Test
     public void getTasksFromRepo() {
         List<Task> expectedTasks = Arrays.asList(
-            new Task(Long.valueOf(1), "go to the gym", note1),
-            new Task(Long.valueOf(2), "go to uni", note1) 
+            new Task("go to gym"),
+            new Task("go to uni"),
+            new Task("go to hell")
         );
 
         when(taskRepository.findAll()).thenReturn(expectedTasks);
         List<Task> actual_tasks = taskServiceImpl.getTasks(); 
         assertEquals(expectedTasks, actual_tasks);
     }
-*/
 }
