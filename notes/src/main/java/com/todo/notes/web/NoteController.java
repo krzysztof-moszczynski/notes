@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.todo.notes.entity.Note;
+import com.todo.notes.entity.Task;
 import com.todo.notes.service.NoteService;
 
 import lombok.AllArgsConstructor;
@@ -45,5 +46,15 @@ public class NoteController {
         noteService.deleteNote(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
+
+    @GetMapping("/{id}/tasks")
+    public ResponseEntity<List<Task>> getTasksFromNote(@PathVariable Long id) {
+        return new ResponseEntity<>(noteService.getTasksFromNote(id), HttpStatus.OK);
+    }
     
+    @PostMapping("/{noteId}/task/{taskId}")
+    public ResponseEntity<Task> addTaskToNote(@PathVariable Long noteId, @PathVariable Long taskId) throws Exception {
+        noteService.addTaskToNote(taskId, noteId);
+        return new ResponseEntity<>(HttpStatus.CREATED);
+    }
 }
