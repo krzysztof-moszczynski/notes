@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.todo.notes.entity.Note;
+import com.todo.notes.entity.Task;
 import com.todo.notes.repository.NoteRepository;
 import com.todo.notes.repository.TaskRepository;
 
@@ -22,6 +23,9 @@ public class NoteServiceImpl implements NoteService {
      @Autowired
      NoteRepository noteRepository;
 
+     @Autowired
+     TaskServiceImpl taskServiceImpl;
+
      public Note getNote(Long Id) {
           Optional<Note> note = noteRepository.findById(Id);
           return note.get();
@@ -29,6 +33,14 @@ public class NoteServiceImpl implements NoteService {
 
      public Note saveNote(Note note) {
           return noteRepository.save(note);
+     }
+
+     public Task addTaskToNote(Long taskId, Long noteId) throws Exception {
+          Task task = taskServiceImpl.getTask(taskId);
+          Optional<Note> note = noteRepository.findById(noteId);
+          Note unwrappedNote = NoteServiceImpl.unwrapNote(note, noteId);
+          task.getNotes().add(unwrappedNote);
+          return taskRepository.save(task);
      }
 
      public void deleteNote(Long id) {
@@ -39,18 +51,23 @@ public class NoteServiceImpl implements NoteService {
           return (List<Note>) noteRepository.findAll();
      }
 
-     //Optional object management
-     /* 
-     static Task unwrapTask(Optional<Task> entity, Long id) throws Exception {
-          if(entity.isPresent()) return entity.get();
-          else throw new Exception();
+     public List<Task> getTasksFromNote(Long id) {
+          Note note = getNote(id);
+          return note.getTasks();
      }
-     */
 
-    static Note unwrapNote(Optional<Note> entity, Long Id) throws Exception {
-        if (entity.isPresent())
-            return entity.get();
-        else
-            throw new Exception();
-    }
+     // Optional object management
+     /*
+      * static Task unwrapTask(Optional<Task> entity, Long id) throws Exception {
+      * if(entity.isPresent()) return entity.get();
+      * else throw new Exception();
+      * }
+      */
+
+     static Note unwrapNote(Optional<Note> entity, Long Id) throws Exception {
+          if (entity.isPresent())
+               return entity.get();
+          else
+               throw new Exception();
+     }
 }

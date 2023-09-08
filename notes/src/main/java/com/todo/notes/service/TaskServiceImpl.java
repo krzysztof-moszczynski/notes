@@ -38,14 +38,6 @@ public class TaskServiceImpl implements TaskService {
         taskRepository.deleteById(id);
     }
 
-    public Task addTaskToNote(Long taskId, Long noteId) throws Exception {
-        Task task = getTask(taskId);
-        Optional<Note> note = noteRepository.findById(noteId);
-        Note unwrappedNote = NoteServiceImpl.unwrapNote(note, noteId);
-        task.getNotes().add(unwrappedNote);
-        return taskRepository.save(task);
-    }
-
     public List<Task> getTasks() {
         return (List<Task>) taskRepository.findAll();
     }
