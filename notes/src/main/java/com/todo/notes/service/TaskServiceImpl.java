@@ -6,7 +6,6 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.todo.notes.entity.Note;
 import com.todo.notes.entity.Task;
 import com.todo.notes.repository.NoteRepository;
 import com.todo.notes.repository.TaskRepository;
