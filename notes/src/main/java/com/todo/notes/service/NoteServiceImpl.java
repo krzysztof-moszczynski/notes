@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.todo.notes.entity.Note;
 import com.todo.notes.entity.Task;
+import com.todo.notes.exception.NoteNotFoundException;
 import com.todo.notes.repository.NoteRepository;
 import com.todo.notes.repository.TaskRepository;
 
@@ -28,17 +29,17 @@ public class NoteServiceImpl implements NoteService {
 
      public Note getNote(Long Id) {
           Optional<Note> note = noteRepository.findById(Id);
-          return note.get();
+          return unwrapNote(note, Id);
      }
 
      public Note saveNote(Note note) {
           return noteRepository.save(note);
      }
 
-     public Task addTaskToNote(Long taskId, Long noteId) throws Exception {
+     public Task addTaskToNote(Long taskId, Long noteId) {// throws Exception {
           Task task = taskServiceImpl.getTask(taskId);
           Optional<Note> note = noteRepository.findById(noteId);
-          Note unwrappedNote = NoteServiceImpl.unwrapNote(note, noteId);
+          Note unwrappedNote = unwrapNote(note, noteId);
           task.getNotes().add(unwrappedNote);
           return taskRepository.save(task);
      }
@@ -64,10 +65,10 @@ public class NoteServiceImpl implements NoteService {
       * }
       */
 
-     static Note unwrapNote(Optional<Note> entity, Long Id) throws Exception {
+     static Note unwrapNote(Optional<Note> entity, Long id){
           if (entity.isPresent())
                return entity.get();
           else
-               throw new Exception();
+               throw new NoteNotFoundException(id);
      }
 }

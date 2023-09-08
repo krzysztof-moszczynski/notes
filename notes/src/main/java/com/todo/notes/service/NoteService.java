@@ -8,7 +8,7 @@ import com.todo.notes.entity.Task;
 public interface NoteService {
     Note getNote(Long id);   
     Note saveNote(Note note);
-    Task addTaskToNote(Long taskId, Long noteId)throws Exception;
+    Task addTaskToNote(Long taskId, Long noteId);//throws Exception;
     void deleteNote(Long id);
     List<Note> getNotes();
     List<Task> getTasksFromNote(Long id);
