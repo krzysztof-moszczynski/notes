@@ -2,6 +2,7 @@ package com.todo.notes.service;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -45,14 +46,15 @@ public class NoteServiceImpl implements NoteService {
      }
 
      public void deleteNote(Long id) {
-          noteRepository.deleteById(id);
+          Note unwrappedNote = getNote(id);
+          noteRepository.deleteById(unwrappedNote.getId());
      }
 
      public List<Note> getNotes() {
           return (List<Note>) noteRepository.findAll();
      }
 
-     public List<Task> getTasksFromNote(Long id) {
+     public Set<Task> getTasksFromNote(Long id) {
           Note note = getNote(id);
           return note.getTasks();
      }
