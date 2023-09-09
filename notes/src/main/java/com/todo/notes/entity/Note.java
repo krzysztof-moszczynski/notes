@@ -1,7 +1,6 @@
 package com.todo.notes.entity;
 
-import java.util.List;
-
+import java.util.Set;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -47,5 +46,5 @@ public class Note {
         joinColumns = @JoinColumn(name = "note_id", referencedColumnName = "id"),
         inverseJoinColumns = @JoinColumn(name = "task_id", referencedColumnName = "id")
     )
-    private List<Task> tasks;
+    private Set<Task> tasks;
 }
