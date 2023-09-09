@@ -1,6 +1,7 @@
 package com.todo.notes;
 
 import java.util.Arrays;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
 
@@ -47,11 +48,11 @@ public class NoteServiceImplTest {
         Note note = new Note();
         note.setId(Long.valueOf(1));
         note.setTitle("note1");
-        note.setTasks(Arrays.asList(
+        note.setTasks(new HashSet<>(Arrays.asList(
             new Task("go to gym"),
             new Task("go to uni"),
             new Task("go to hell")
-        ));
+        )));
         when(noteRepository.save(note)).thenReturn(note);
         assertEquals(note, noteServiceImpl.saveNote(note));
     }
@@ -62,11 +63,11 @@ public class NoteServiceImplTest {
         Note note = new Note();
         note.setId(Long.valueOf(1));
         note.setTitle("note1");
-        note.setTasks(Arrays.asList(
+        note.setTasks(new HashSet<>(Arrays.asList(
             new Task("go to gym"),
             new Task("go to uni"),
             new Task("go to hell")
-        ));
+        )));
         
     } 
 
@@ -76,11 +77,11 @@ public class NoteServiceImplTest {
         Note note = new Note();
         note.setId(Long.valueOf(1));
         note.setTitle("note1");
-        note.setTasks(Arrays.asList(
+        note.setTasks(new HashSet<>(Arrays.asList(
             new Task("go to gym"),
             new Task("go to uni"),
             new Task("go to hell")
-        ));
+        )));
         when(noteRepository.save(note)).thenReturn(note);
         assertEquals(note, noteServiceImpl.saveNote(note));
     }
