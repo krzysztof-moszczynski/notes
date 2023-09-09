@@ -1,6 +1,7 @@
 package com.todo.notes.service;
 
 import java.util.List;
+import java.util.Set;
 
 import com.todo.notes.entity.Note;
 import com.todo.notes.entity.Task;
@@ -11,5 +12,5 @@ public interface NoteService {
     Task addTaskToNote(Long taskId, Long noteId);//throws Exception;
     void deleteNote(Long id);
     List<Note> getNotes();
-    List<Task> getTasksFromNote(Long id);
+    Set<Task> getTasksFromNote(Long id);
 }
