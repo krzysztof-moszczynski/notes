@@ -1,6 +1,7 @@
 package com.todo.notes.web;
 
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,13 +43,13 @@ public class NoteController {
     }
     
     @DeleteMapping("/{id}")
-    public ResponseEntity<Note> deleteNote(@PathVariable Long id) {
+    public ResponseEntity<HttpStatus> deleteNote(@PathVariable Long id) {
         noteService.deleteNote(id);
         return new ResponseEntity<>(HttpStatus.NO_CONTENT);
     }
 
     @GetMapping("/{id}/tasks")
-    public ResponseEntity<List<Task>> getTasksFromNote(@PathVariable Long id) {
+    public ResponseEntity<Set<Task>> getTasksFromNote(@PathVariable Long id) {
         return new ResponseEntity<>(noteService.getTasksFromNote(id), HttpStatus.OK);
     }
     
