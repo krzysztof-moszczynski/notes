@@ -35,7 +35,8 @@ public class TaskServiceImpl implements TaskService {
     }
 
     public void deleteTask(Long id) {
-        taskRepository.deleteById(id);
+        Task uwrappedTask = getTask(id);
+        taskRepository.deleteById(uwrappedTask.getId());
     }
 
     public List<Task> getTasks() {
