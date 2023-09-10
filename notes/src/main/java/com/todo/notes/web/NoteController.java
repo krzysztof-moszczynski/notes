@@ -31,7 +31,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/note")
+@RequestMapping("/api/note")
 @Tag(name = "Note Controller", description = "Create and retirve notes")
 public class NoteController {
     

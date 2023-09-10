@@ -29,7 +29,7 @@ import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
 @RestController
-@RequestMapping("/task")
+@RequestMapping("/api/task")
 @Tag(name = "Task Controller", description = "Create and retirve tasks")
 public class TaskController {
 
