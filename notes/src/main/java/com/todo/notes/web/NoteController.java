@@ -1,5 +1,6 @@
 package com.todo.notes.web;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Set;
 
@@ -92,4 +93,12 @@ public class NoteController {
         noteService.addTaskToNote(taskId, noteId);
         return new ResponseEntity<>(HttpStatus.CREATED);
     }
+
+    @GetMapping(value ="/getNotesTasks", produces = MediaType.APPLICATION_JSON_VALUE)
+    @ApiResponse(responseCode = "200", description = "Successful retrieval of notes", content = @Content(array = @ArraySchema(schema = @Schema(implementation = Note.class))))
+    @Operation(summary = "Retrives notes and their tasks", description = "Provides a list of notes including tasks")
+    public ResponseEntity<HashMap<Note, Set<Task>>> getNotesTasks() {
+        return new ResponseEntity<HashMap<Note, Set<Task>>>(noteService.getNotesTasks(), HttpStatus.OK);
+    }
+    
 }
