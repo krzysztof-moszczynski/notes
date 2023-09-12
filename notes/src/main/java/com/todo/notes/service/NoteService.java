@@ -1,6 +1,7 @@
 package com.todo.notes.service;
 
 import java.util.List;
+import java.util.HashMap;
 import java.util.Set;
 
 import com.todo.notes.entity.Note;
@@ -13,4 +14,5 @@ public interface NoteService {
     void deleteNote(Long id);
     List<Note> getNotes();
     Set<Task> getTasksFromNote(Long id);
+    HashMap<Note, Set<Task>> getNotesTasks();
 }

@@ -1,5 +1,6 @@
 package com.todo.notes.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Optional;
 import java.util.Set;
@@ -28,15 +29,18 @@ public class NoteServiceImpl implements NoteService {
      @Autowired
      TaskServiceImpl taskServiceImpl;
 
+     @Override
      public Note getNote(Long Id) {
           Optional<Note> note = noteRepository.findById(Id);
           return unwrapNote(note, Id);
      }
 
+     @Override
      public Note saveNote(Note note) {
           return noteRepository.save(note);
      }
 
+     @Override
      public Task addTaskToNote(Long taskId, Long noteId) {// throws Exception {
           Task task = taskServiceImpl.getTask(taskId);
           Optional<Note> note = noteRepository.findById(noteId);
@@ -45,6 +49,7 @@ public class NoteServiceImpl implements NoteService {
           return taskRepository.save(task);
      }
 
+     @Override
      public void deleteNote(Long id) {
           Note unwrappedNote = getNote(id);
           noteRepository.deleteById(unwrappedNote.getId());
@@ -54,6 +59,7 @@ public class NoteServiceImpl implements NoteService {
           return (List<Note>) noteRepository.findAll();
      }
 
+     @Override
      public Set<Task> getTasksFromNote(Long id) {
           Note note = getNote(id);
           return note.getTasks();
@@ -67,10 +73,24 @@ public class NoteServiceImpl implements NoteService {
       * }
       */
 
+     @Override
+     public HashMap<Note, Set<Task>> getNotesTasks() {
+          HashMap<Note, Set<Task>> notesTasks = new HashMap<>();
+          List<Note> notes = getNotes();
+          
+          for(Note note : notes) {
+               //Set<Task> tasks = getTasksFromNote(note.getId());
+              notesTasks.putIfAbsent(note, getTasksFromNote(note.getId()));
+          }
+
+          return notesTasks;
+     }
+
      static Note unwrapNote(Optional<Note> entity, Long id){
           if (entity.isPresent())
                return entity.get();
           else
                throw new NoteNotFoundException(id);
      }
+
 }
