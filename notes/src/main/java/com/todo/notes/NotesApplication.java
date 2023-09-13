@@ -24,16 +24,22 @@ public class NotesApplication implements CommandLineRunner{
 	}
 
 	@Override
+    //CommnadLineRunner interface implementation used to populate 
+    // exemplary data below
 	public void run(String ...args) throws Exception{
-        Note note1 = new Note("note1");
-        Note note2 = new Note("note2");
-		noteRepository.save(note1);
-		noteRepository.save(note2);
+		Note[] notes = new Note[] {
+        new Note ("at uni"),
+        new Note ("at home")
+		};
+
+		for (Note note: notes) {
+			noteRepository.save(note);
+		}
 
 		Task[] tasks = new Task[] {
-            new Task("go to gym"),
-            new Task("go to uni"),
-            new Task("go to hell")
+            new Task("go to library"),
+            new Task("workout"),
+            new Task("CS50 certificate")
 		};
 
 		for(Task task : tasks) {
