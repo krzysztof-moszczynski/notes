@@ -12,17 +12,25 @@ import com.todo.notes.service.TaskService;
 import lombok.AllArgsConstructor;
 
 @AllArgsConstructor
+
+//Controller for GUI
 @Controller
+//Mapping for GUI
 @RequestMapping("/")
 public class GUIController {
+
+    //Autowired for TaskService and NoteService
     @Autowired
     TaskService taskService;
     @Autowired
     NoteService noteService;
 
+    //Mapp for main page 
     @GetMapping("")
     public String getNotesList(Model notesTasks) {
+        //Add attribute notesTasks to model
         notesTasks.addAttribute("notesTasks", noteService.getNotesTasks());
+        //Return notes.html template
         return "notes";
     }
 }
