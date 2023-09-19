@@ -20,26 +20,39 @@ import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
 import lombok.Setter;
 
+//lombok annotations to generate boilerplate code
 @RequiredArgsConstructor
 @NoArgsConstructor
 @Getter
 @Setter
-@Entity
-@Table(name = "task")
 
+//entity annotations for JPA
+@Entity
+//table annotation for JPA
+@Table(name = "task")
+//Task - entity class, represents a task in the database
+//Task has a many to many relationship with Note
+//Task is a POJO with getters and setters
 public class Task {
 
+    //JPA annotations for id, column, and generation strategy
     @Id
+    //column annotation for JPA
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    //not null and not blank annotations for validation
     @NotBlank
     @NonNull
+    //column annotation for JPA
     @Column(name = "activity", nullable = false)
     private String activity;
     
+    //json ignore annotation to prevent infinite recursion
     @JsonIgnore
+    //many to many annotation for JPA
     @ManyToMany
+    //join table annotation for new table containing foreign keys
     @JoinTable(
         name = "note_task",
         joinColumns = @JoinColumn(name = "task_id", referencedColumnName = "id"),
