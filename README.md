@@ -41,6 +41,11 @@ spring.datasource.driver-class-name=com.mysql.cj.jdbc.Driver<br>
 spring.jpa.show-sql: true<br>
 </code>
 
+# 4 OpenAPI documentation
+For details see: <br>
+[Link] http://localhost:8080/swagger-ui/index.html <br> 
+[Link] http://localhost:8080/v3/api-docs 
+
 # Contact
 <krzysztof.moszczynski@gmail.com> <br>
 Project Link: [Link] https://github.com/krzysztof-moszczynski/notes
