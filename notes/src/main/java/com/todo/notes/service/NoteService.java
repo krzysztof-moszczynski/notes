@@ -7,10 +7,11 @@ import java.util.Set;
 import com.todo.notes.entity.Note;
 import com.todo.notes.entity.Task;
 
+//Basic business logic for Note CRUD operations 
 public interface NoteService {
     Note getNote(Long id);   
     Note saveNote(Note note);
-    Task addTaskToNote(Long taskId, Long noteId);//throws Exception;
+    Task addTaskToNote(Long taskId, Long noteId);
     void deleteNote(Long id);
     List<Note> getNotes();
     Set<Task> getTasksFromNote(Long id);
