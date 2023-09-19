@@ -7,10 +7,12 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 
 public class ErrorResponse {
 
+    //String timestamp readable format
     @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "dd-MM-yyyy hh:mm:ss")
     private LocalDateTime timestamp;
     private List<String> message;
 
+    //List of errors
     public ErrorResponse(List<String> message) {
         this.timestamp = LocalDateTime.now();
         this.message = message;
