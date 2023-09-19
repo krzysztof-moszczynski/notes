@@ -27,7 +27,7 @@ class NotesApplicationTests {
 
 	@Test
 	public void testGetTask() throws Exception{
-		RequestBuilder request = MockMvcRequestBuilders.get("/task/1");
+		RequestBuilder request = MockMvcRequestBuilders.get("/api/task/1");
 
 		mockMvc.perform(request)
 			.andExpect(status().is2xxSuccessful()
