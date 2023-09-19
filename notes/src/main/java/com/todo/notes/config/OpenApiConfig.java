@@ -9,6 +9,11 @@ import io.swagger.v3.oas.models.info.Info;
 @Configuration
 public class OpenApiConfig {
     
+    //OpenAPI configuraion
+    //For OpenAPI Documentation browse:
+    //http://localhost:8080/swagger-ui/index.html
+    //http://localhost:8080/v3/api-docs
+
     @Bean
     OpenAPI OpenAPI() {
         return new OpenAPI() 
